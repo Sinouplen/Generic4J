@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.sinouplen.generic</groupId>
@@ -8,7 +9,7 @@
 
 	<name>Generic4J</name>
 	<url>https://sinouplen.onveracity.com/repos/Generic4J</url>
-	
+
 	<scm>
 		<url>https://github.com/Sinouplen/Generic4J.git</url>
 		<connection>scm:git:git://git@github.com:Sinouplen/Generic4J.git</connection>
@@ -40,6 +41,17 @@
 			</properties>
 		</profile>
 	</profiles>
+
+	<repositories>
+		<repository>
+			<id>sinouplen-releases</id>
+			<url>https://github.com/Sinouplen/mvn-repo/raw/master/releases</url>
+		</repository>
+		<repository>
+			<id>sinouplen-snapshots</id>
+			<url>https://github.com/Sinouplen/mvn-repo/raw/master/snapshots</url>
+		</repository>
+	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
