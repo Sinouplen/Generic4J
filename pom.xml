@@ -12,7 +12,7 @@
 	<scm>
 		<url>https://github.com/Sinouplen/Generic4J.git</url>
 		<connection>scm:git:git://git@github.com:Sinouplen/Generic4J.git</connection>
-		<developerConnection>scm:git:https://git@github.com:Sinouplen/Generic4J.git</developerConnection>
+		<developerConnection>scm:git:https://github.com/Sinouplen/Generic4J.git</developerConnection>
 	</scm>
 
 	<distributionManagement>
