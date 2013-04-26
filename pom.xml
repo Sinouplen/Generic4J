@@ -135,11 +135,11 @@
 			<version>${ojdbc.version}</version> </dependency> -->
 
 		<!-- Microsoft SQL Server -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc4</artifactId>
 			<version>${microsoft.sqlserver.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- Spring -->
 		<dependency>
