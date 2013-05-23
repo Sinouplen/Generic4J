@@ -26,7 +26,7 @@ public class SynchronizeController {
 	 * @param ouverte
 	 *            The ouverte to set.
 	 */
-	public void setOpen(boolean open) {
+	public synchronized void setOpen(boolean open) {
 		this.open = open;
 	}
 
@@ -49,9 +49,11 @@ public class SynchronizeController {
 
 	/**
 	 * Wait the next event
+	 * 
+	 * @throws RuntimeException
 	 */
-	public synchronized void waitOne() {
-		if (!this.open) {
+	public synchronized void waitOne() throws RuntimeException {
+		while (!this.open) {
 			try {
 				this.wait();
 			} catch (InterruptedException ex) {

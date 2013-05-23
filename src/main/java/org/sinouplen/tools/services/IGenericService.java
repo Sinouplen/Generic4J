@@ -4,18 +4,37 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.sinouplen.tools.dao.IGenericDAO;
+import org.sinouplen.tools.services.exception.GenericServiceException;
 
 /**
  * @author Sinouplen
  * 
  */
-public interface IGenericService<T, ID extends Serializable, DAO extends IGenericDAO<T, ID>> {
+public interface IGenericService<T, K extends Serializable, D extends IGenericDAO<T, K>> {
 
-	public T get(ID id) throws Exception;
+	/**
+	 * @param id
+	 * @return
+	 * @throws GenericServiceException
+	 */
+	T get(K id) throws GenericServiceException;
 
-	public List<T> getList(List<ID> ids) throws Exception;
+	/**
+	 * @param ids
+	 * @return
+	 * @throws GenericServiceException
+	 */
+	List<T> getList(List<K> ids) throws GenericServiceException;
 
-	public void create(final T newInstance) throws Exception;
+	/**
+	 * @param newInstance
+	 * @throws GenericServiceException
+	 */
+	void create(final T newInstance) throws GenericServiceException;
 
-	public void update(final T newInstance) throws Exception;
+	/**
+	 * @param newInstance
+	 * @throws GenericServiceException
+	 */
+	void update(final T newInstance) throws GenericServiceException;
 }

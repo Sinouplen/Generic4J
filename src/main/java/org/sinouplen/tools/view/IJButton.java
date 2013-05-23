@@ -14,31 +14,67 @@ import javax.swing.JRootPane;
  */
 public interface IJButton {
 
-	public void showView();
+	/**
+	 * 
+	 */
+	void showView();
 
-	public void hidden();
+	/**
+	 * 
+	 */
+	void hidden();
 
-	public void setName(String name);
+	/**
+	 * @param name
+	 */
+	void setName(String name);
 
-	public String getName();
+	/**
+	 * @return
+	 */
+	String getName();
 
-	public void actionToExecute(String action);
+	/**
+	 * @param action
+	 */
+	void actionToExecute(String action);
 
-	public boolean isSelected();
+	/**
+	 * @return
+	 */
+	boolean isSelected();
 
-	public void setSelected(boolean isSelected);
+	/**
+	 * @param isSelected
+	 */
+	void setSelected(boolean isSelected);
 
 	/* BEGIN : Redefine functions of JButton */
-	public Color getBackground();
+	/**
+	 * @return
+	 */
+	Color getBackground();
 
-	public void setBackground(Color backgroundColor);
+	/**
+	 * @param backgroundColor
+	 */
+	void setBackground(Color backgroundColor);
 
-	public Container getParent();
+	/**
+	 * @return
+	 */
+	Container getParent();
 
-	public JRootPane getRootPane();
+	JRootPane getRootPane();
 
-	public String getText();
+	/**
+	 * @return
+	 */
+	String getText();
 
-	public void setText(String text);
+	/**
+	 * @param text
+	 */
+	void setText(String text);
 	/* END : Redefine functions of JButton */
 }

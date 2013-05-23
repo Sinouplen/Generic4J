@@ -9,13 +9,28 @@ package org.sinouplen.tools.view;
  */
 public interface IJMenuItem {
 
-	public void showView();
+	/**
+	 * 
+	 */
+	void showView();
 
-	public void hidden();
+	/**
+	 * 
+	 */
+	void hidden();
 
-	public void setName(String name);
+	/**
+	 * @param name
+	 */
+	void setName(String name);
 
-	public String getName();
+	/**
+	 * @return
+	 */
+	String getName();
 
-	public void actionToExecute(String action);
+	/**
+	 * @param action
+	 */
+	void actionToExecute(String action);
 }

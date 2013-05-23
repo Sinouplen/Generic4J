@@ -60,6 +60,9 @@ public class AbstractJPanelView extends JPanel implements IView, Runnable {
 		this.synchronizerController = synchronizerController;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IView#showView()
+	 */
 	public void showView() {
 		LOGGER.debug("BEGIN : Show View");
 		this.setVisible(true);
@@ -67,16 +70,25 @@ public class AbstractJPanelView extends JPanel implements IView, Runnable {
 		LOGGER.debug("END : Show View");
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IView#hidden()
+	 */
 	public void hidden() {
 		this.setVisible(false);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IView#actionToExecute(java.lang.String)
+	 */
 	public void actionToExecute(String executedAction) {
 		this.session.getObjectContextMap().put(
 				ToolsSessionVariables.NEXT_EXECUTED_ACTION, executedAction);
 		this.synchronizerController.set();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

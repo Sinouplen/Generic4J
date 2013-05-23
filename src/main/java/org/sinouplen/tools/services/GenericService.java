@@ -18,73 +18,98 @@ import org.springframework.transaction.annotation.Transactional;
  * 
  */
 @Transactional
-public abstract class GenericService<T extends Serializable, ID extends Serializable, DAO extends IGenericDAO<T, ID>>
-		implements IGenericService<T, ID, DAO> {
+public abstract class GenericService<T extends Serializable, K extends Serializable, D extends IGenericDAO<T, K>>
+		implements IGenericService<T, K, D> {
 
-	private final static Logger LOGGER = Logger.getLogger(GenericService.class);
+	private static final Logger LOGGER = Logger.getLogger(GenericService.class);
+	
+	private static final String CREATE = "Create ";
 
 	protected Class<T> entityClass;
 
-	protected DAO baseDao;
+	protected D baseDao;
 
+	/**
+	 * @param entity
+	 */
 	public void setEntityClass(T entity) {
 		this.entityClass = CastTrouble.getClass(entity);
 	}
 
-	public void setBaseDao(DAO baseDao) {
+	/**
+	 * @param baseDao
+	 */
+	public void setBaseDao(D baseDao) {
 		this.baseDao = baseDao;
 		this.baseDao.setClazz(this.entityClass);
 	}
 
+	/**
+	 * @param entity
+	 * @param baseDAO
+	 */
 	@Autowired
-	public void setGenericParameters(T entity, DAO baseDAO) {
+	public void setGenericParameters(T entity, D baseDAO) {
 		this.setEntityClass(entity);
 		this.setBaseDao(baseDAO);
 	}
 
-	public T get(final ID primaryKey) throws Exception {
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.services.IGenericService#get(java.io.Serializable)
+	 */
+	public T get(final K primaryKey) throws GenericServiceException {
 
 		T returnObject = null;
 
 		try {
-			LOGGER.info("create " + entityClass);
+			LOGGER.info(CREATE + entityClass);
 			returnObject = this.baseDao.getById(primaryKey);
-		} catch (Throwable e) {
-			LOGGER.error("Error during listing all " + entityClass, e);
+		} catch (Exception e) {
+			LOGGER.error("Error during get " + entityClass, e);
 			throw new GenericServiceException(e);
 		}
 		return returnObject;
 	}
 
-	public List<T> getList(final List<ID> primaryKeys) throws Exception {
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.services.IGenericService#getList(java.util.List)
+	 */
+	public List<T> getList(final List<K> primaryKeys)
+			throws GenericServiceException {
 
 		List<T> returnObject = null;
 
 		try {
-			LOGGER.info("create " + entityClass);
+			LOGGER.info(CREATE + entityClass);
 			returnObject = this.baseDao.getByIds(primaryKeys);
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			LOGGER.error("Error during listing all " + entityClass, e);
 			throw new GenericServiceException(e);
 		}
 		return returnObject;
 	}
 
-	public void create(final T newInstance) throws Exception {
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.services.IGenericService#create(java.lang.Object)
+	 */
+	public void create(final T newInstance) throws GenericServiceException {
 		try {
-			LOGGER.info("create " + entityClass);
+			LOGGER.info(CREATE + entityClass);
 			this.baseDao.create(newInstance);
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			LOGGER.error("Error during creating " + entityClass, e);
 			throw new GenericServiceException(e);
 		}
 	}
 
-	public void update(final T newInstance) throws Exception {
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.services.IGenericService#update(java.lang.Object)
+	 */
+	public void update(final T newInstance) throws GenericServiceException {
 		try {
-			LOGGER.info("create " + entityClass);
+			LOGGER.info(CREATE + entityClass);
 			this.baseDao.update(newInstance);
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			LOGGER.error("Error during updating " + entityClass, e);
 			throw new GenericServiceException(e);
 		}

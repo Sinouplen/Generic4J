@@ -26,10 +26,16 @@ public class AbstractJFrameView extends JFrame implements IView, Runnable {
 	private Thread threadView;
 	private Map<String, AbstractJPanelView> contentPanel;
 
+	/**
+	 * 
+	 */
 	public AbstractJFrameView() {
 		this.initialize();
 	}
 
+	/**
+	 * 
+	 */
 	private void initialize() {
 		contentPanel = new HashMap<String, AbstractJPanelView>();
 	}
@@ -72,6 +78,9 @@ public class AbstractJFrameView extends JFrame implements IView, Runnable {
 		return contentPanel;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IView#showView()
+	 */
 	public void showView() {
 		if (this.threadView == null) {
 			this.threadView = new Thread(this);
@@ -81,16 +90,25 @@ public class AbstractJFrameView extends JFrame implements IView, Runnable {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IView#hidden()
+	 */
 	public void hidden() {
 		this.setVisible(false);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IView#actionToExecute(java.lang.String)
+	 */
 	public void actionToExecute(String executedAction) {
 		this.session.getObjectContextMap().put(
 				ToolsSessionVariables.NEXT_EXECUTED_ACTION, executedAction);
 		this.synchronizerController.set();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

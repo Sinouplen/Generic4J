@@ -24,9 +24,9 @@ public interface IController {
 	public Map<String, InfosAction> getInfosActions();
 
 	/**
-	 * @param Actions
+	 * @param actions
 	 */
-	public void setInfosActions(Map<String, InfosAction> Actions);
+	public void setInfosActions(Map<String, InfosAction> actions);
 
 	/**
 	 * @return

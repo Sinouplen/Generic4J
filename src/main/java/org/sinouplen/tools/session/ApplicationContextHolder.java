@@ -17,11 +17,17 @@ public class ApplicationContextHolder implements ApplicationContextAware {
 
 	private static ApplicationContext _applicationContext;
 
+	/* (non-Javadoc)
+	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.ApplicationContext)
+	 */
 	public void setApplicationContext(ApplicationContext applicationContext)
 			throws BeansException {
 		_applicationContext = applicationContext;
 	}
 
+	/**
+	 * @return
+	 */
 	public static ApplicationContext getApplicationContext() {
 		return _applicationContext;
 	}

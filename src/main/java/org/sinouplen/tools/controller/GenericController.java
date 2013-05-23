@@ -8,7 +8,6 @@ import java.awt.Cursor;
 import java.util.Map;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
@@ -97,6 +96,11 @@ public class GenericController implements IController {
 		this.synchronizerController = synchronizerController;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.sinouplen.tools.controller.IController#run()
+	 */
 	public void run() {
 		InfosAction configAction = null;
 		String actionName = null;
@@ -125,15 +129,14 @@ public class GenericController implements IController {
 				step = "";
 				currentView = configAction.getView();
 			}
-			if (currentView != previousView && previousView != null) {
+			if (previousView != null && !currentView.equals(previousView)) {
 				if (currentView instanceof JFrame
-						&& previousView instanceof JFrame
-						&& currentView != previousView && previousView != null) {
+						&& previousView instanceof JFrame) {
 					previousView.hidden();
-				} else if (previousView instanceof JPanel
-						&& currentView instanceof JPanel) {
-					// previousView.disable();
-				}
+				} /*
+				 * else if (previousView instanceof JPanel && currentView
+				 * instanceof JPanel) { // previousView.disable(); }
+				 */
 			}
 			initView(actionName, step, currentView.getName());
 
@@ -144,7 +147,7 @@ public class GenericController implements IController {
 			Component component = CastTrouble.cast(currentView);
 			Component mainFrame = SwingUtilities.getRoot(component);
 			mainFrame.setCursor(Cursor.getDefaultCursor());
-			if (previousFrame != null && mainFrame != previousFrame) {
+			if (previousFrame != null && !mainFrame.equals(previousFrame)) {
 				previousFrame.setCursor(Cursor.getDefaultCursor());
 			}
 			this.synchronizerController.waitOne();

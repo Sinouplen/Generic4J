@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
+import org.apache.log4j.Logger;
 import org.sinouplen.tools.CastTrouble;
 
 /**
@@ -24,6 +25,14 @@ public class FileTransfertHandler extends TransferHandler {
 	 */
 	private static final long serialVersionUID = -60770920939920373L;
 
+	private static final Logger LOGGER = Logger
+			.getLogger(FileTransfertHandler.class);
+
+	/**
+	 * @param jComponent
+	 * @param dataFlavors
+	 * @return
+	 */
 	public boolean canimport(JComponent jComponent, DataFlavor[] dataFlavors) {
 		for (int i = 0; i < dataFlavors.length; i++) {
 			if (dataFlavors[i].equals(DataFlavor.javaFileListFlavor)) {
@@ -36,6 +45,10 @@ public class FileTransfertHandler extends TransferHandler {
 		return false;
 	}
 
+	/**
+	 * @param dataFlavors
+	 * @return
+	 */
 	private boolean hasFileFlavor(DataFlavor[] dataFlavors) {
 		boolean result = false;
 		for (DataFlavor dataFlavor : dataFlavors) {
@@ -46,6 +59,10 @@ public class FileTransfertHandler extends TransferHandler {
 		return result;
 	}
 
+	/**
+	 * @param dataFlavors
+	 * @return
+	 */
 	private boolean hasStringFlavor(DataFlavor[] dataFlavors) {
 		boolean result = false;
 		for (DataFlavor dataFlavor : dataFlavors) {
@@ -56,8 +73,11 @@ public class FileTransfertHandler extends TransferHandler {
 		return result;
 	}
 
-	/**
-	 * {@inheritDoc}
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.TransferHandler#importData(javax.swing.JComponent,
+	 * java.awt.datatransfer.Transferable)
 	 */
 	@Override
 	public boolean importData(JComponent jComponent, Transferable transferable) {
@@ -70,10 +90,12 @@ public class FileTransfertHandler extends TransferHandler {
 					File file = files.get(i);
 					builder.append(file.getAbsolutePath()).append("\n");
 				}
-				// System.out.println(builder.toString());
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug(builder.toString());
+				}
 				return true;
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOGGER.error(e);
 			}
 			return false;
 		}
@@ -81,10 +103,13 @@ public class FileTransfertHandler extends TransferHandler {
 			try {
 				String myData = CastTrouble.cast(transferable
 						.getTransferData(DataFlavor.stringFlavor));
-				// System.out.println(myData);
+
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug(myData);
+				}
 				return true;
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOGGER.error(e);
 			}
 		}
 		return false;

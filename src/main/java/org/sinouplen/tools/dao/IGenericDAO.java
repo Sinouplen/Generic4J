@@ -9,23 +9,53 @@ import org.hibernate.criterion.Criterion;
  * @author Sinouplen
  * 
  */
-public interface IGenericDAO<T, PK extends Serializable> {
+public interface IGenericDAO<T, K extends Serializable> {
 
-	public void setClazz(final Class<T> currentClass);
+	/**
+	 * @param currentClass
+	 */
+	void setClazz(final Class<T> currentClass);
 
-	public T getById(final PK id);
+	/**
+	 * @param id
+	 * @return
+	 */
+	T getById(final K id);
 
-	public List<T> getByIds(final List<PK> id);
+	/**
+	 * @param id
+	 * @return
+	 */
+	List<T> getByIds(final List<K> id);
 
-	public List<T> getAll();
+	/**
+	 * @return
+	 */
+	List<T> getAll();
 
-	public List<T> findByCriteria(List<Criterion> criterions);
+	/**
+	 * @param criterions
+	 * @return
+	 */
+	List<T> findByCriteria(List<Criterion> criterions);
 
+	/**
+	 * @param newInstance
+	 */
 	void create(final T newInstance);
 
+	/**
+	 * @param transientObject
+	 */
 	void update(final T transientObject);
 
+	/**
+	 * @param persistentObject
+	 */
 	void delete(final T persistentObject);
 
-	void deleteById(final PK idObject);
+	/**
+	 * @param idObject
+	 */
+	void deleteById(final K idObject);
 }

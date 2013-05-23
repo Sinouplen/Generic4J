@@ -25,10 +25,16 @@ public class AbstractJMenuItemView extends JMenuItem implements IJMenuItem,
 	@Autowired
 	protected ISession session;
 
+	/**
+	 * 
+	 */
 	public AbstractJMenuItemView() {
 
 	}
 
+	/**
+	 * @param name
+	 */
 	public AbstractJMenuItemView(String name) {
 		this.setName(name);
 	}
@@ -64,21 +70,33 @@ public class AbstractJMenuItemView extends JMenuItem implements IJMenuItem,
 		this.synchronizerController = synchronizerController;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IJMenuItem#showView()
+	 */
 	public void showView() {
 		this.setVisible(true);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IJMenuItem#hidden()
+	 */
 	public void hidden() {
 		this.setVisible(false);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IJMenuItem#actionToExecute(java.lang.String)
+	 */
 	public void actionToExecute(String executedAction) {
 		this.session.getObjectContextMap().put(
 				ToolsSessionVariables.NEXT_EXECUTED_ACTION, executedAction);
 		this.synchronizerController.set();
 	}
 
+	/**
+	 * 
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

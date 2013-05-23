@@ -23,11 +23,17 @@ public abstract class AbstractJTextFieldView extends JTextField {
 	@Autowired
 	protected ISession session;
 
+	/**
+	 * 
+	 */
 	public void showView() {
 		this.setVisible(true);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
+	/**
+	 * 
+	 */
 	public void hidden() {
 		this.setVisible(false);
 	}

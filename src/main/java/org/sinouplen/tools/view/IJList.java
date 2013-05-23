@@ -15,36 +15,77 @@ import javax.swing.event.ListSelectionListener;
  */
 public interface IJList {
 
-	public void showView();
+	/**
+	 * 
+	 */
+	void showView();
 
-	public void hidden();
+	/**
+	 * 
+	 */
+	void hidden();
 
-	public void disable();
+	/**
+	 * 
+	 */
+	void disable();
 
-	public void setName(String name);
+	/**
+	 * @param name
+	 */
+	void setName(String name);
 
-	public String getName();
+	/**
+	 * @return
+	 */
+	String getName();
 
-	public void actionToExecute(String executedAction);
+	/**
+	 * @param executedAction
+	 */
+	void actionToExecute(String executedAction);
 
 	/* BEGIN : Redefine functions of JButton */
-	public Object getSelectedValue();
+	/**
+	 * @return
+	 */
+	Object getSelectedValue();
 
-	public Object[] getSelectedValues();
+	/**
+	 * @return
+	 */
+	Object[] getSelectedValues();
 
-	public void setModel(ListModel listModel);
+	/**
+	 * @param listModel
+	 */
+	void setModel(ListModel listModel);
 
-	public ListModel getModel();
+	/**
+	 * @return
+	 */
+	ListModel getModel();
 
-	public void setSelectionMode(int selectionMode);
+	/**
+	 * @param selectionMode
+	 */
+	void setSelectionMode(int selectionMode);
 
-	public int getSelectionMode();
+	int getSelectionMode();
 
-	public Container getParent();
+	/**
+	 * @return
+	 */
+	Container getParent();
 
-	public JRootPane getRootPane();
+	/**
+	 * @return
+	 */
+	JRootPane getRootPane();
 
-	public void addListSelectionListener(
-			ListSelectionListener listSelectionListener);
+	/**
+	 * @param listSelectionListener
+	 */
+	void addListSelectionListener(ListSelectionListener listSelectionListener);
 	/* END : Redefine functions of JButton */
 }

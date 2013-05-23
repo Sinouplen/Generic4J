@@ -4,8 +4,11 @@ package org.sinouplen.tools.session;
  * @author Sinouplen
  * 
  */
-public class ToolsSessionVariables {
+public final class ToolsSessionVariables {
 
+	/**
+	 * 
+	 */
 	private ToolsSessionVariables() {
 
 	}

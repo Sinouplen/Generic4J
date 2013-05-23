@@ -15,36 +15,53 @@ import org.sinouplen.tools.CastTrouble;
  * @author Sinouplen
  * 
  */
-public abstract class AbstractJpaDAO<T extends Serializable, PK extends Serializable>
-		extends AbstractDAO<T> implements IGenericDAO<T, PK> {
+public abstract class AbstractJpaDAO<T extends Serializable, K extends Serializable>
+		extends AbstractDAO<T> implements IGenericDAO<T, K> {
 
 	@PersistenceContext
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
-	public T getById(final PK id) {
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.dao.IGenericDAO#getById(java.io.Serializable)
+	 */
+	public T getById(final K id) {
 		return this.entityManager.find(this.currentClass, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.dao.IGenericDAO#getAll()
+	 */
 	public List<T> getAll() {
-		return CastTrouble.castList(
-				this.currentClass,
-				this.entityManager.createQuery(
-						"from " + this.currentClass.getName()).getResultList());
+		return CastTrouble.castList(this.currentClass, this.entityManager
+				.createQuery("from " + this.currentClass.getName())
+				.getResultList());
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.dao.IGenericDAO#create(java.lang.Object)
+	 */
 	public void create(final T entity) {
 		this.entityManager.persist(entity);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.dao.IGenericDAO#update(java.lang.Object)
+	 */
 	public void update(final T entity) {
 		this.entityManager.merge(entity);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.dao.IGenericDAO#delete(java.lang.Object)
+	 */
 	public void delete(final T entity) {
 		this.entityManager.remove(entity);
 	}
 
-	public void deleteById(final PK entityId) {
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.dao.IGenericDAO#deleteById(java.io.Serializable)
+	 */
+	public void deleteById(final K entityId) {
 		final T entity = this.getById(entityId);
 
 		this.delete(entity);

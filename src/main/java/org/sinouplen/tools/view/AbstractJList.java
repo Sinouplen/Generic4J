@@ -24,15 +24,24 @@ public abstract class AbstractJList extends JList implements IJList {
 	@Autowired
 	protected ISession session;
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IJList#showView()
+	 */
 	public void showView() {
 		this.setVisible(true);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IJList#hidden()
+	 */
 	public void hidden() {
 		this.setVisible(false);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.sinouplen.tools.view.IJList#actionToExecute(java.lang.String)
+	 */
 	public void actionToExecute(String action) {
 		this.session.getObjectContextMap().put(
 				ToolsSessionVariables.NEXT_EXECUTED_ACTION, action);

@@ -9,15 +9,33 @@ package org.sinouplen.tools.view;
  */
 public interface IView {
 
-	public void showView();
+	/**
+	 * 
+	 */
+	void showView();
 
-	public void hidden();
+	/**
+	 * 
+	 */
+	void hidden();
 
-	public void disable();
+	/**
+	 * 
+	 */
+	void disable();
 
-	public void setName(String name);
+	/**
+	 * @param name
+	 */
+	void setName(String name);
 
-	public String getName();
+	/**
+	 * @return
+	 */
+	String getName();
 
-	public void actionToExecute(String executedAction);
+	/**
+	 * @param executedAction
+	 */
+	void actionToExecute(String executedAction);
 }
